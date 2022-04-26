@@ -2,7 +2,7 @@ package types;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.LinkedList;
 
 public class DirectedGraphAsList extends AbstractGraphAsList implements DirectedGraph {
 
@@ -16,14 +16,15 @@ public class DirectedGraphAsList extends AbstractGraphAsList implements Directed
 
 	@Override
 	public void addEdge(Integer v, Integer w) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Iterator<Integer> getAdjacentVerticesTo(Integer v) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<Integer> adjacentsToV = edges.get(v);
+		int index = 0;
+		for (Integer neighbor : adjacentsToV) {
+			if (neighbor > w)
+				break;
+			index++;
+		}
+		edges.get(v).add(index, w);
+		numberOfEdges++;
 	}
 
 }

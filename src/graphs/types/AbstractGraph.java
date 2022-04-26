@@ -10,6 +10,7 @@ public abstract class AbstractGraph implements Graph {
 
 	public AbstractGraph(Integer numberOfVertices) {
 		this.numberOfVertices = numberOfVertices;
+		initializeLocalVariables();
 	}
 
 	public AbstractGraph(File file) throws IOException {
@@ -18,6 +19,8 @@ public abstract class AbstractGraph implements Graph {
 		this.numberOfVertices = Integer.parseInt(reader.readLine());
 		this.numberOfEdges = Integer.parseInt(reader.readLine());
 
+		initializeLocalVariables();
+
 		if (this.getNumberOfEdges() <= 0 || this.getNumberOfVertices() <= 0) {
 			reader.close();
 			throw new IllegalArgumentException(
@@ -25,21 +28,25 @@ public abstract class AbstractGraph implements Graph {
 		}
 
 		String line;
-		while ((line = reader.readLine()) != null) {
-			try {
+		try {
+			while ((line = reader.readLine()) != null) {
 				String[] edge;
-				edge = line.split("-");
+				edge = line.split(" ");
 				Integer v = Integer.parseInt(edge[0]);
 				Integer w = Integer.parseInt(edge[1]);
 				addEdge(v, w);
-			} catch (Exception e) {
-				reader.close();
-				throw new IllegalArgumentException("Error in reading edges.");
 			}
+		} catch (IllegalArgumentException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Error in reading edges.");
+		} finally {
+			reader.close();
+			numberOfEdges /= 2;
 		}
-
-		reader.close();
 	}
+
+	protected abstract void initializeLocalVariables();
 
 	public Integer getDegree(Integer vertex) {
 		Iterator<Integer> neighbors = getAdjacentVerticesTo(vertex);
@@ -59,17 +66,30 @@ public abstract class AbstractGraph implements Graph {
 	}
 
 	public String toString() {
-		String result = "Number of Vertices: " + getNumberOfVertices() + " | " + "Number of Edges: "
-				+ getNumberOfEdges() + System.lineSeparator() + "List of Edges: " + System.lineSeparator();
+		StringBuilder result = new StringBuilder();
+		result.append("Number of Vertices: ").append(getNumberOfVertices()).append(" | ").append("Number of Edges: ")
+				.append(getNumberOfEdges()).append(System.lineSeparator()).append("List of Edges: ")
+				.append(System.lineSeparator());
 		for (Integer vertex = 0; vertex < getNumberOfVertices(); vertex++) {
 			Iterator<Integer> neighbors = getAdjacentVerticesTo(vertex);
 			while (neighbors.hasNext()) {
 				Integer neighbor = neighbors.next();
-				result.concat(getStringOfEdge(vertex, neighbor));
+				result.append(getStringOfEdge(vertex, neighbor)).append(System.lineSeparator());
 			}
 		}
-		return result;
+		return result.toString();
 	}
+
+	protected void validateEdge(Integer v, Integer w) throws IllegalArgumentException {
+		if (hasEdgeIncidentOn(v, w))
+			throw new IllegalArgumentException("Duplicated edge on " + v + "and" + w);
+	}
+
+	public Double averageDegree() {
+		return 1.0 * numberOfEdges / numberOfVertices;
+	}
+
+	public abstract boolean hasEdgeIncidentOn(Integer v, Integer w);
 
 	protected String getStringOfEdge(Integer v, Integer w) {
 		return v + "-" + w;

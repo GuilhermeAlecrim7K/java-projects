@@ -8,11 +8,15 @@ public interface Graph {
 
 	Integer maxDegree();
 
-	Double averageDegree(Graph graph);
+	Double averageDegree();
 
 	void addEdge(Integer v, Integer w);
 
 	Iterator<Integer> getAdjacentVerticesTo(Integer v);
 
 	String toString();
+
+	public Integer getNumberOfVertices();
+
+	public Integer getNumberOfEdges();
 }

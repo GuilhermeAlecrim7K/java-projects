@@ -2,7 +2,6 @@ package types;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class UndirectedGraphAsList extends AbstractGraphAsList implements UndirectedGraph {
 
@@ -16,14 +15,9 @@ public class UndirectedGraphAsList extends AbstractGraphAsList implements Undire
 
 	@Override
 	public void addEdge(Integer v, Integer w) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Iterator<Integer> getAdjacentVerticesTo(Integer v) {
-		// TODO Auto-generated method stub
-		return null;
+		edges.get(v).add(w);
+		edges.get(w).add(v);
+		numberOfEdges++;
 	}
 
 }
