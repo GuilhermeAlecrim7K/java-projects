@@ -30,10 +30,10 @@ public abstract class AbstractGraph implements Graph {
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
-				String[] edge;
-				edge = line.split(" ");
-				Integer v = Integer.parseInt(edge[0]);
-				Integer w = Integer.parseInt(edge[1]);
+				String[] vertices;
+				vertices = line.split(" ");
+				Integer v = Integer.parseInt(vertices[0]);
+				Integer w = Integer.parseInt(vertices[1]);
 				addEdge(v, w);
 			}
 		} catch (IllegalArgumentException e) {
@@ -65,6 +65,7 @@ public abstract class AbstractGraph implements Graph {
 		return maxDegree;
 	}
 
+	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("Number of Vertices: ").append(getNumberOfVertices()).append(" | ").append("Number of Edges: ")

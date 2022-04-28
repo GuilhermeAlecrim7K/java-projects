@@ -27,6 +27,15 @@ public abstract class AbstractGraphAsMatrix extends AbstractGraph {
 			}
 		}
 	}
+	
+	public void addEdge(Integer v, Integer w) {
+		edges[v][w] = 1;
+		numberOfEdges++;
+	}
+	
+	public Double averageDegree() {
+		return 2.0 * numberOfEdges / numberOfVertices;
+	}
 
 	@Override
 	public boolean hasEdgeIncidentOn(Integer v, Integer w) {
@@ -38,7 +47,7 @@ public abstract class AbstractGraphAsMatrix extends AbstractGraph {
 		List<Integer> result = new ArrayList<>(numberOfVertices);
 		for (int i = 0; i < numberOfVertices; i++) {
 			if (edges[v][i] != Integer.MAX_VALUE)
-				result.add(v);
+				result.add(i);
 		}
 		return result.iterator();
 	}

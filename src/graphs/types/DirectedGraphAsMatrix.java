@@ -2,7 +2,6 @@ package types;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class DirectedGraphAsMatrix extends AbstractGraphAsMatrix implements DirectedGraph {
 
@@ -16,14 +15,8 @@ public class DirectedGraphAsMatrix extends AbstractGraphAsMatrix implements Dire
 
 	@Override
 	public void addEdge(Integer v, Integer w) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Iterator<Integer> getAdjacentVerticesTo(Integer v) {
-		// TODO Auto-generated method stub
-		return null;
+		edges[v][w] = 1;
+		numberOfEdges++;
 	}
 
 }
