@@ -66,55 +66,71 @@ class ConstructorTests {
 	}
 
 	@Test
-	void integerConstructorDoesNotThrowWithGraphAsList() {
-		assertDoesNotThrow(new Executable() {
-			@Override
-			public void execute() throws Throwable {
-				new DirectedGraphAsList(validInteger);
-				new UndirectedGraphAsList(validInteger);
-			}
+	void integerConstructorShouldNotThrowWithGraphAsList() {
+		assertDoesNotThrow(() -> {
+			new DirectedGraphAsList(validInteger);
+			new UndirectedGraphAsList(validInteger);
 		});
 	}
 
 	@Test
-	void integerConstructorDoesNotThrowWithGraphAsMatrix() {
-		assertDoesNotThrow(new Executable() {
-			@Override
-			public void execute() throws Throwable {
-				new DirectedGraphAsMatrix(validInteger);
-				new UndirectedGraphAsMatrix(validInteger);
-			}
+	void integerConstructorShouldNotThrowWithGraphAsMatrix() {
+		assertDoesNotThrow(() -> {
+			new DirectedGraphAsMatrix(validInteger);
+			new UndirectedGraphAsMatrix(validInteger);
 		});
 	}
 
 	@Test
-	void fileConstructorDoesNotThrowWithGraphAsList() {
-		assertDoesNotThrow(new Executable() {
-			public void execute() throws Throwable {
-				new DirectedGraphAsList(tinyG);
-				new UndirectedGraphAsList(tinyG);
-			}
+	void fileConstructorShouldNotThrowWithGraphAsList() {
+		assertDoesNotThrow(() -> {
+			new DirectedGraphAsList(tinyG);
+			new UndirectedGraphAsList(tinyG);
 		});
 	}
 
 	@Test
-	void fileConstructorDoesNotThrowWithGraphAsMatrix() {
-		assertDoesNotThrow(new Executable() {
-			@Override
-			public void execute() throws Throwable {
-				new DirectedGraphAsMatrix(tinyG);
-				new UndirectedGraphAsMatrix(tinyG);
-			}
+	void fileConstructorShouldNotThrowWithGraphAsMatrix() {
+		assertDoesNotThrow(() -> {
+			new DirectedGraphAsMatrix(tinyG);
+			new UndirectedGraphAsMatrix(tinyG);
 		});
 	}
-	
+
 	@Test
-	void integerConstructorExceptionalCases() {
-		
+	void integerConstructorShouldThrowIllegalArgumentExceptionWithNullValue() {
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedGraphAsList(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedGraphAsMatrix(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedGraphAsList(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedGraphAsMatrix(nullInteger);
+		});
 	}
-	
+
 	@Test
-	void fileConstructorExceptionalCases() {
+	void integerConstructorShouldThrowIllegalArgumentExceptionWithInvalidInteger() {
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedGraphAsList(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedGraphAsMatrix(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedGraphAsList(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedGraphAsMatrix(invalidInteger);
+		}, "Test");
+	}
+
+	@Test
+	void fileConstructorShouldThrowIllegalArgumentExceptionWithInvalidNumberOfEdges() {
 		
 	}
 
