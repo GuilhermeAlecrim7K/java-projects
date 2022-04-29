@@ -20,6 +20,7 @@ public abstract class AbstractGraphAsList extends AbstractGraph {
 
 	@Override
 	protected void initializeLocalVariables() {
+		numberOfEdges = 0;
 		edges = new ArrayList<>(numberOfVertices);
 		for (int i = 0; i < numberOfVertices; i++) {
 			edges.add(new LinkedList<Integer>());

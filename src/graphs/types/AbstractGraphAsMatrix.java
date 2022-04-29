@@ -20,6 +20,7 @@ public abstract class AbstractGraphAsMatrix extends AbstractGraph {
 
 	@Override
 	protected void initializeLocalVariables() {
+		numberOfEdges = 0;
 		edges = new Integer[numberOfVertices][numberOfVertices];
 		for (int i = 0; i < numberOfVertices; i++) {
 			for (int j = 0; j < numberOfVertices; j++) {

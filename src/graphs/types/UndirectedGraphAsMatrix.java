@@ -18,5 +18,10 @@ public class UndirectedGraphAsMatrix extends AbstractGraphAsMatrix implements Un
 		super.addEdge(v, w);
 		super.addEdge(w, v);
 	}
+	
+	@Override
+	protected String getStringOfEdge(Integer v, Integer w) {
+		return v < w ? v + "-" + w : "";
+	}
 
 }

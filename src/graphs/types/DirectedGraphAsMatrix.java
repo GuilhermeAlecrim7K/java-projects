@@ -13,10 +13,4 @@ public class DirectedGraphAsMatrix extends AbstractGraphAsMatrix implements Dire
 		super(file);
 	}
 
-	@Override
-	public void addEdge(Integer v, Integer w) {
-		edges[v][w] = 1;
-		numberOfEdges++;
-	}
-
 }

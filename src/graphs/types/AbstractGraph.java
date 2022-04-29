@@ -9,23 +9,31 @@ public abstract class AbstractGraph implements Graph {
 	protected Integer numberOfEdges;
 
 	public AbstractGraph(Integer numberOfVertices) {
+		if (numberOfVertices == null)
+			throw new IllegalArgumentException("Integer value cannot be null.");
+		if (numberOfVertices < 1)
+			throw new IllegalArgumentException("Integer value must be greater than 0.");
+				
 		this.numberOfVertices = numberOfVertices;
 		initializeLocalVariables();
 	}
 
 	public AbstractGraph(File file) throws IOException {
+		if (file == null)
+			throw new IllegalArgumentException("File not found");
+		
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 
-		this.numberOfVertices = Integer.parseInt(reader.readLine());
-		this.numberOfEdges = Integer.parseInt(reader.readLine());
+		numberOfVertices = Integer.parseInt(reader.readLine());
+		numberOfEdges = Integer.parseInt(reader.readLine());
 
-		initializeLocalVariables();
-
-		if (this.getNumberOfEdges() <= 0 || this.getNumberOfVertices() <= 0) {
+		if (numberOfEdges <= 0 || this.getNumberOfVertices() <= 0) {
 			reader.close();
 			throw new IllegalArgumentException(
-					"Error in attribution of number of vertices/edges in the two first lines of the document");
+					"File does not contain a valid number of vertices/edges.");
 		}
+		
+		initializeLocalVariables();
 
 		String line;
 		try {
@@ -42,7 +50,6 @@ public abstract class AbstractGraph implements Graph {
 			throw new IllegalArgumentException("Error in reading edges.");
 		} finally {
 			reader.close();
-			numberOfEdges /= 2;
 		}
 	}
 
@@ -53,6 +60,7 @@ public abstract class AbstractGraph implements Graph {
 		Integer degree = 0;
 		while (neighbors.hasNext()) {
 			degree++;
+			neighbors.next();
 		}
 		return degree;
 	}
@@ -73,10 +81,13 @@ public abstract class AbstractGraph implements Graph {
 				.append(System.lineSeparator());
 		for (Integer vertex = 0; vertex < getNumberOfVertices(); vertex++) {
 			Iterator<Integer> neighbors = getAdjacentVerticesTo(vertex);
+			String vertexEdges = new String(""); 
 			while (neighbors.hasNext()) {
 				Integer neighbor = neighbors.next();
-				result.append(getStringOfEdge(vertex, neighbor)).append(System.lineSeparator());
+				String thisEdge = getStringOfEdge(vertex, neighbor);
+				vertexEdges = vertexEdges.concat(thisEdge + (thisEdge.isEmpty() ? "" : neighbors.hasNext() ? "," : ""));
 			}
+			result.append(vertexEdges.isEmpty() ? "" : "[" + vertexEdges + "]");
 		}
 		return result.toString();
 	}
