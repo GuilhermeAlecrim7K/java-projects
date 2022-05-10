@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="graphs/|basics/" kind="src" path="src"/>
+	<classpathentry excluding="graphs/|basics/|algorithms/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/graphs"/>
 	<classpathentry kind="src" path="src/basics"/>
+	<classpathentry kind="src" path="src/algorithms"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
