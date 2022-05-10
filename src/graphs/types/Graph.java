@@ -19,4 +19,6 @@ public interface Graph {
 	public Integer getNumberOfVertices();
 
 	public Integer getNumberOfEdges();
+	
+	public boolean hasEdgeIncidentOn(Integer v, Integer w);
 }

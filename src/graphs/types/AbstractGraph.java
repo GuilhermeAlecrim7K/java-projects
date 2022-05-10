@@ -87,7 +87,7 @@ public abstract class AbstractGraph implements Graph {
 				String thisEdge = getStringOfEdge(vertex, neighbor);
 				vertexEdges = vertexEdges.concat(thisEdge + (thisEdge.isEmpty() ? "" : neighbors.hasNext() ? "," : ""));
 			}
-			result.append(vertexEdges.isEmpty() ? "" : "[" + vertexEdges + "]");
+			result.append(vertexEdges.isEmpty() ? "" : "[" + vertexEdges + "]" + System.lineSeparator());
 		}
 		return result.toString();
 	}
@@ -100,8 +100,6 @@ public abstract class AbstractGraph implements Graph {
 	public Double averageDegree() {
 		return 1.0 * numberOfEdges / numberOfVertices;
 	}
-
-	public abstract boolean hasEdgeIncidentOn(Integer v, Integer w);
 
 	protected String getStringOfEdge(Integer v, Integer w) {
 		return v + "-" + w;
