@@ -3,6 +3,10 @@ package types;
 import java.util.Iterator;
 
 public interface Graph {
+	
+	public Integer getNumberOfVertices();
+	
+	public Integer getNumberOfEdges();
 
 	Integer getDegree(Integer vertex);
 
@@ -10,15 +14,9 @@ public interface Graph {
 
 	Double averageDegree();
 
-	void addEdge(Integer v, Integer w);
-
 	Iterator<Integer> getAdjacentVerticesTo(Integer v);
-
-	String toString();
-
-	public Integer getNumberOfVertices();
-
-	public Integer getNumberOfEdges();
 	
 	public boolean hasEdgeIncidentOn(Integer v, Integer w);
+
+	String toString();
 }

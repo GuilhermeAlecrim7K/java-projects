@@ -3,26 +3,27 @@ package types;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public abstract class AbstractGraphAsList extends AbstractGraph {
+public abstract class AbstractUnweightedGraphAsList extends AbstractUnweightedGraph {
 
 	protected ArrayList<LinkedList<Integer>> edges;
 
-	public AbstractGraphAsList(Integer numberOfVertices) {
+	public AbstractUnweightedGraphAsList(Integer numberOfVertices) {
 		super(numberOfVertices);
 	}
 
-	public AbstractGraphAsList(File file) throws IOException {
+	public AbstractUnweightedGraphAsList(File file) throws IOException {
 		super(file);
 	}
 
 	@Override
-	protected void initializeLocalVariables() {
+	protected void initializeProperties() {
 		numberOfEdges = 0;
-		edges = new ArrayList<>(numberOfVertices);
-		for (int i = 0; i < numberOfVertices; i++) {
+		edges = new ArrayList<>(getNumberOfVertices());
+		for (int i = 0; i < getNumberOfVertices(); i++) {
 			edges.add(new LinkedList<Integer>());
 		}
 	}
@@ -34,7 +35,7 @@ public abstract class AbstractGraphAsList extends AbstractGraph {
 
 	@Override
 	public Iterator<Integer> getAdjacentVerticesTo(Integer v) {
-		return edges.get(v).iterator();
+		return Collections.unmodifiableList(edges.get(v)).iterator();
 	}
 
 }
