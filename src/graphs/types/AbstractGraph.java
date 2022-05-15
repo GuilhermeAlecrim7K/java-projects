@@ -48,30 +48,6 @@ public abstract class AbstractGraph implements Graph {
 		return degree;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		result.append("Number of Vertices: " + getNumberOfVertices() + " | ");
-		result.append("Number of Edges: " + getNumberOfEdges() + System.lineSeparator());
-		result.append("List of Edges: " + System.lineSeparator());
-		result.append(getStringOfEdges());
-		return result.toString();
-	}
-
-	private String getStringOfEdges() {
-		StringBuilder result = new StringBuilder();
-		for (Integer vertex = 0; vertex < getNumberOfVertices(); vertex++) {
-			Iterator<Integer> neighbors = getAdjacentVerticesTo(vertex);
-			String vertexEdges = new String(vertex + "-> ");
-			while (neighbors.hasNext()) {
-				Integer neighbor = neighbors.next();
-				vertexEdges = vertexEdges.concat(neighbor.toString() + (neighbors.hasNext() ? ", " : ""));
-			}
-			result.append(vertexEdges.equals(vertex + "-> ") ? "" :  "[" + vertexEdges + "]" + System.lineSeparator());
-		}
-		return result.toString();
-	}
-
 	protected boolean isValidEdge(Integer v, Integer w) throws IllegalArgumentException {
 
 		boolean result = false;

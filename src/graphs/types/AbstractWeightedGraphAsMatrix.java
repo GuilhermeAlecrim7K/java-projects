@@ -19,6 +19,7 @@ public abstract class AbstractWeightedGraphAsMatrix extends AbstractWeightedGrap
 	
 	@Override
 	protected void initializeProperties() {
+		numberOfEdges = 0;
 		edges = new Double[getNumberOfVertices()][getNumberOfVertices()];
 		for (int i = 0; i < edges.length; i++) {
 			for (int j = 0; j < edges.length; j++) {

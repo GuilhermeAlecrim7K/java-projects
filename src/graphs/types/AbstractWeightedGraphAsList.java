@@ -21,6 +21,7 @@ public abstract class AbstractWeightedGraphAsList extends AbstractWeightedGraph 
 
 	@Override
 	protected void initializeProperties() {
+		numberOfEdges = 0;
 		edges = new ArrayList<>();
 		for (int i = 0; i < getNumberOfVertices(); i++) {
 			edges.add(new HashMap<>());
