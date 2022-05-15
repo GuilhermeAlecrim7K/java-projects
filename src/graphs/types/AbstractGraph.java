@@ -26,10 +26,10 @@ public abstract class AbstractGraph implements Graph {
 
 	protected abstract void initializeProperties();
 
-	public Integer maxDegree() {
+	public Integer getHighestDegree() {
 		Integer maxDegree = 0;
 		for (int v = 0; v < getNumberOfVertices(); v++) {
-			maxDegree = Math.max(maxDegree, getDegree(v));
+			maxDegree = Math.max(maxDegree, getDegreeOfVertex(v));
 		}
 		return maxDegree;
 	}
@@ -38,7 +38,7 @@ public abstract class AbstractGraph implements Graph {
 		return numberOfVertices;
 	}
 
-	public Integer getDegree(Integer vertex) {
+	public Integer getDegreeOfVertex(Integer vertex) {
 		Integer degree = 0;
 		Iterator<Integer> neighbors = getAdjacentVerticesTo(vertex);
 		while (neighbors.hasNext()) {
@@ -65,7 +65,7 @@ public abstract class AbstractGraph implements Graph {
 	}
 
 	@Override
-	public Double averageDegree() {
+	public Double getAverageDegree() {
 		return 1.0 * getNumberOfEdges() / getNumberOfVertices();
 	}
 }

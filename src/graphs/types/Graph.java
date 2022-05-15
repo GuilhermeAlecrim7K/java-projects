@@ -8,11 +8,11 @@ public interface Graph {
 
 	public Integer getNumberOfEdges();
 
-	Integer getDegree(Integer vertex);
+	Integer getDegreeOfVertex(Integer vertex);
 
-	Integer maxDegree();
+	Integer getHighestDegree();
 
-	Double averageDegree();
+	Double getAverageDegree();
 
 	Iterator<Integer> getAdjacentVerticesTo(Integer v);
 
