@@ -9,7 +9,7 @@ import java.util.Map;
 
 public abstract class AbstractWeightedGraphAsList extends AbstractWeightedGraph {
 
-	ArrayList<HashMap<Integer, Integer>> edges;
+	ArrayList<HashMap<Integer, Double>> edges;
 
 	public AbstractWeightedGraphAsList(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -29,15 +29,20 @@ public abstract class AbstractWeightedGraphAsList extends AbstractWeightedGraph 
 	}
 
 	@Override
-	public Integer getWeightOfEdge(Integer v, Integer w) {
-		return edges.get(v).get(w);
+	public Double getWeightOfEdge(Integer v, Integer w) {
+		Double weight = edges.get(v).get(w);
+		if (weight == null)
+			weight = Double.POSITIVE_INFINITY;
+		else if (v == w)
+			weight = Double.valueOf(0);
+		return weight;
 	}
 
 	@Override
 	public boolean hasNegativeEdge() {
 		boolean hasNegativeEdge = false;
-		for (HashMap<Integer, Integer> vertex : edges) {
-			for (Map.Entry<Integer, Integer> vertexWeightPair : vertex.entrySet()) {
+		for (HashMap<Integer, Double> vertex : edges) {
+			for (Map.Entry<Integer, Double> vertexWeightPair : vertex.entrySet()) {
 				if (vertexWeightPair.getValue() < 0) {
 					hasNegativeEdge = true;
 					break;

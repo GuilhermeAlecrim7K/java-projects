@@ -3,7 +3,7 @@ package types;
 import java.io.File;
 import java.io.IOException;
 
-public class UndirectedWeightedGraphAsMatrix extends AbstractWeightedGraphAsMatrix implements UndirectedGraph{
+public class UndirectedWeightedGraphAsMatrix extends AbstractWeightedGraphAsMatrix implements UndirectedGraph {
 
 	public UndirectedWeightedGraphAsMatrix(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -14,7 +14,7 @@ public class UndirectedWeightedGraphAsMatrix extends AbstractWeightedGraphAsMatr
 	}
 
 	@Override
-	public void addEdgeBetween(Integer v, Integer w, Integer weight) {
+	public void addEdgeBetween(Integer v, Integer w, Double weight) {
 		edges[v][w] = weight.doubleValue();
 		edges[w][v] = weight.doubleValue();
 		numberOfEdges++;

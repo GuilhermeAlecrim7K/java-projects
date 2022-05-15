@@ -63,7 +63,7 @@ public abstract class AbstractGraph implements Graph {
 	public Integer getNumberOfEdges() {
 		return numberOfEdges;
 	}
-	
+
 	@Override
 	public Double averageDegree() {
 		return 1.0 * getNumberOfEdges() / getNumberOfVertices();

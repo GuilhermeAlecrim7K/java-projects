@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public abstract class AbstractWeightedGraph extends AbstractGraph implements WeightedGraph {
-	
 
 	public AbstractWeightedGraph(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -36,7 +35,7 @@ public abstract class AbstractWeightedGraph extends AbstractGraph implements Wei
 				vertices = line.split(" ");
 				Integer v = Integer.parseInt(vertices[0]);
 				Integer w = Integer.parseInt(vertices[1]);
-				Integer weight = Integer.parseInt(vertices[2]);
+				Double weight = Double.parseDouble(vertices[2]);
 				addEdgeBetween(v, w, weight);
 			}
 		} catch (IllegalArgumentException e) {
@@ -47,7 +46,6 @@ public abstract class AbstractWeightedGraph extends AbstractGraph implements Wei
 			reader.close();
 		}
 	}
-	
 
 	@Override
 	public String toString() {
@@ -66,9 +64,11 @@ public abstract class AbstractWeightedGraph extends AbstractGraph implements Wei
 			String vertexEdges = new String(vertex + "-> ");
 			while (neighbors.hasNext()) {
 				Integer neighbor = neighbors.next();
-				vertexEdges = vertexEdges.concat(neighbor.toString() +String.format("(%d)", getWeightOfEdge(vertex, neighbor)) + (neighbors.hasNext() ? ", " : ""));
+				vertexEdges = vertexEdges
+						.concat(neighbor.toString() + String.format("(~%.0f)", getWeightOfEdge(vertex, neighbor))
+								+ (neighbors.hasNext() ? ", " : ""));
 			}
-			result.append(vertexEdges.equals(vertex + "-> ") ? "" :  "[" + vertexEdges + "]" + System.lineSeparator());
+			result.append(vertexEdges.equals(vertex + "-> ") ? "" : "[" + vertexEdges + "]" + System.lineSeparator());
 		}
 		return result.toString();
 	}

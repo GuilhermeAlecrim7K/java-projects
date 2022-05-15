@@ -9,6 +9,7 @@ import java.util.List;
 public abstract class AbstractUnweightedGraphAsMatrix extends AbstractUnweightedGraph {
 
 	protected boolean[][] edges;
+	protected final boolean allowsMultipleEdgesToSameVertex = false;
 
 	public AbstractUnweightedGraphAsMatrix(Integer numberOfVertices) {
 		super(numberOfVertices);

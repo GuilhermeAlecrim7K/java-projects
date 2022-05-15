@@ -26,17 +26,16 @@ public class UndirectedUnweightedGraphAsList extends AbstractUnweightedGraphAsLi
 			else
 				break;
 		}
-		while(adjacentsToW.hasNext()) {
+		while (adjacentsToW.hasNext()) {
 			if (adjacentsToW.next() < v)
 				indexInW++;
 			else
 				break;
 		}
-		
+
 		edges.get(v).add(indexInV, w);
 		edges.get(w).add(indexInW, v);
-		numberOfEdges ++;
+		numberOfEdges++;
 	}
-
 
 }

@@ -6,8 +6,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public abstract class AbstractWeightedGraphAsMatrix extends AbstractWeightedGraph {
-	
+
 	Double[][] edges;
+	protected final boolean allowsMultipleEdgesToSameVertex = false;
 
 	public AbstractWeightedGraphAsMatrix(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -16,7 +17,7 @@ public abstract class AbstractWeightedGraphAsMatrix extends AbstractWeightedGrap
 	public AbstractWeightedGraphAsMatrix(File file) throws IOException {
 		super(file);
 	}
-	
+
 	@Override
 	protected void initializeProperties() {
 		numberOfEdges = 0;
@@ -27,12 +28,12 @@ public abstract class AbstractWeightedGraphAsMatrix extends AbstractWeightedGrap
 			}
 		}
 	}
-	
+
 	@Override
-	public Integer getWeightOfEdge(Integer v, Integer w) {
-		return edges[v][w].intValue();
+	public Double getWeightOfEdge(Integer v, Integer w) {
+		return edges[v][w];
 	}
-	
+
 	@Override
 	public boolean hasNegativeEdge() {
 		boolean hasNegativeEdge = false;
@@ -48,12 +49,12 @@ public abstract class AbstractWeightedGraphAsMatrix extends AbstractWeightedGrap
 		}
 		return hasNegativeEdge;
 	}
-	
+
 	@Override
 	public boolean hasEdgeIncidentOn(Integer v, Integer w) {
 		return Double.isFinite(edges[v][w]);
 	}
-	
+
 	@Override
 	public Iterator<Integer> getAdjacentVerticesTo(Integer v) {
 		LinkedList<Integer> neighbors = new LinkedList<>();

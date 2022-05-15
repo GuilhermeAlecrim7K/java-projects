@@ -3,7 +3,7 @@ package types;
 import java.io.File;
 import java.io.IOException;
 
-public class DirectedWeightedGraphAsList extends AbstractWeightedGraphAsList implements DirectedGraph{
+public class DirectedWeightedGraphAsList extends AbstractWeightedGraphAsList implements DirectedGraph {
 
 	public DirectedWeightedGraphAsList(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -14,7 +14,7 @@ public class DirectedWeightedGraphAsList extends AbstractWeightedGraphAsList imp
 	}
 
 	@Override
-	public void addEdgeBetween(Integer v, Integer w, Integer weight) {
+	public void addEdgeBetween(Integer v, Integer w, Double weight) {
 		edges.get(v).put(w, weight);
 		numberOfEdges++;
 	}

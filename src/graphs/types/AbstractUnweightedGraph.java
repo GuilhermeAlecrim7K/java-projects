@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
-public abstract class AbstractUnweightedGraph extends AbstractGraph implements UnweightedGraph{
+public abstract class AbstractUnweightedGraph extends AbstractGraph implements UnweightedGraph {
 
 	public AbstractUnweightedGraph(Integer numberOfVertices) {
 		super(numberOfVertices);
@@ -65,7 +65,7 @@ public abstract class AbstractUnweightedGraph extends AbstractGraph implements U
 				Integer neighbor = neighbors.next();
 				vertexEdges = vertexEdges.concat(neighbor.toString() + (neighbors.hasNext() ? ", " : ""));
 			}
-			result.append(vertexEdges.equals(vertex + "-> ") ? "" :  "[" + vertexEdges + "]" + System.lineSeparator());
+			result.append(vertexEdges.equals(vertex + "-> ") ? "" : "[" + vertexEdges + "]" + System.lineSeparator());
 		}
 		return result.toString();
 	}
