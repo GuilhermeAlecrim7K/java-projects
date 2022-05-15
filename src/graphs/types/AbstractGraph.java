@@ -54,7 +54,7 @@ public abstract class AbstractGraph implements Graph {
 		if (!allowsEdgeToSelf && v == w)
 			throw new IllegalArgumentException("Edge to self not allowed");
 		if (!allowsMultipleEdgesToSameVertex && hasEdgeIncidentOn(v, w))
-			throw new IllegalArgumentException("Duplicated edge on " + v + "and" + w);
+			throw new IllegalArgumentException("Duplicated edge on " + v + " and " + w);
 		result = true;
 
 		return result;
