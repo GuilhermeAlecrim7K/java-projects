@@ -12,9 +12,10 @@ import types.*;
 
 class ConstructorTests {
 
-	static File tinyG;
-	static File mediumG;
-	static File largeG;
+	static File tinyUnwG;
+	static File tinyWG;
+	static File mediumUnwG;
+	static File largeUnwG;
 	static File nullFile = null;
 
 	static Integer validInteger = 1;
@@ -23,104 +24,159 @@ class ConstructorTests {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		tinyG = new File("src\\graphs\\tinyG.txt");
-		mediumG = new File("src\\graphs\\mediumG.txt");
-		largeG = new File("src\\graphs\\largeG.txt");
+		tinyUnwG = new File("src\\graphs\\graphs-txt\\tinyUG.txt");
+		tinyWG = new File("src\\graphs\\graphs-txt\\tinyWG.txt");
+		mediumUnwG = new File("src\\graphs\\graphs-txt\\mediumUG.txt");
+		largeUnwG = new File("src\\graphs\\graphs-txt\\largeUG.txt");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		tinyG = null;
-		mediumG = null;
-		largeG = null;
+		tinyWG = null;
+		tinyUnwG = null;
+		mediumUnwG = null;
+		largeUnwG = null;
 	}
 
 	@Test
 	void integerConstructorShouldNotThrowWithGraphAsList() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsList(validInteger);
-			new UndirectedGraphAsList(validInteger);
+			new DirectedWeightedGraphAsList(validInteger);
+			new DirectedUnweightedGraphAsList(validInteger);
+			new UndirectedWeightedGraphAsList(validInteger);
+			new UndirectedUnweightedGraphAsList(validInteger);
 		});
 	}
 
 	@Test
 	void integerConstructorShouldNotThrowWithGraphAsMatrix() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsMatrix(validInteger);
-			new UndirectedGraphAsMatrix(validInteger);
+			new DirectedWeightedGraphAsMatrix(validInteger);
+			new DirectedUnweightedGraphAsMatrix(validInteger);
+			new UndirectedWeightedGraphAsMatrix(validInteger);
+			new UndirectedUnweightedGraphAsMatrix(validInteger);
 		});
 	}
 
 	@Test
 	void fileConstructorShouldNotThrowWithGraphAsList() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsList(tinyG);
-			new UndirectedGraphAsList(tinyG);
+			new DirectedWeightedGraphAsList(tinyWG);
+			new UndirectedWeightedGraphAsList(tinyWG);
+			new DirectedUnweightedGraphAsList(tinyUnwG);
+			new UndirectedUnweightedGraphAsList(tinyUnwG);
 		});
 	}
 
 	@Test
 	void fileConstructorShouldNotThrowWithGraphAsMatrix() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsMatrix(tinyG);
-			new UndirectedGraphAsMatrix(tinyG);
+			new DirectedWeightedGraphAsMatrix(tinyWG);
+			new UndirectedWeightedGraphAsMatrix(tinyWG);
+			new DirectedUnweightedGraphAsMatrix(tinyUnwG);
+			new UndirectedUnweightedGraphAsMatrix(tinyUnwG);
 		});
 	}
 
 	@Test
-	void shouldCreateGraphFromMediumSizedFile() {
+	void shouldCreateUnweightedGraphFromMediumSizedFile() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsList(mediumG);
-			new DirectedGraphAsMatrix(mediumG);
-			new UndirectedGraphAsList(mediumG);
-			new UndirectedGraphAsMatrix(mediumG);
+			new DirectedUnweightedGraphAsList(mediumUnwG);
+			new DirectedUnweightedGraphAsMatrix(mediumUnwG);
+			new UndirectedUnweightedGraphAsList(mediumUnwG);
+			new UndirectedUnweightedGraphAsMatrix(mediumUnwG);
 		});
 	}
 
 	@Test
-	void shouldCreateGraphAsListFromLargeSizedFile() {
+	void shouldCreateUnweightedGraphAsListFromLargeSizedFile() {
 		assertDoesNotThrow(() -> {
-			new DirectedGraphAsList(largeG);
-			new UndirectedGraphAsList(largeG);
+			new DirectedUnweightedGraphAsList(largeUnwG);
+			new UndirectedUnweightedGraphAsList(largeUnwG);
 		});
 	}
 
 	@Test
 	void integerConstructorShouldThrowIllegalArgumentExceptionWithNullValue() {
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new DirectedGraphAsList(nullInteger);
+			new DirectedUnweightedGraphAsList(nullInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new DirectedGraphAsMatrix(nullInteger);
+			new DirectedUnweightedGraphAsMatrix(nullInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new UndirectedGraphAsList(nullInteger);
+			new DirectedWeightedGraphAsList(nullInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new UndirectedGraphAsMatrix(nullInteger);
+			new DirectedWeightedGraphAsMatrix(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsList(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsMatrix(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsList(nullInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsMatrix(nullInteger);
 		});
 	}
 
 	@Test
 	void integerConstructorShouldThrowIllegalArgumentExceptionWithInvalidInteger() {
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new DirectedGraphAsList(invalidInteger);
+			new DirectedUnweightedGraphAsList(invalidInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new DirectedGraphAsMatrix(invalidInteger);
+			new DirectedUnweightedGraphAsMatrix(invalidInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new UndirectedGraphAsList(invalidInteger);
+			new DirectedWeightedGraphAsList(invalidInteger);
 		});
 		assertThrowsExactly(IllegalArgumentException.class, () -> {
-			new UndirectedGraphAsMatrix(invalidInteger);
-		}, "Test");
+			new DirectedWeightedGraphAsMatrix(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsList(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsMatrix(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsList(invalidInteger);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsMatrix(invalidInteger);
+		});
 	}
 
 	@Test
 	void fileConstructorShouldThrowIllegalArgumentExceptionWithNullFile() {
-		assertThrows(IllegalArgumentException.class, () -> {
-			new DirectedGraphAsList(nullFile);
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedUnweightedGraphAsList(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedUnweightedGraphAsMatrix(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedWeightedGraphAsList(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new DirectedWeightedGraphAsMatrix(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsList(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedUnweightedGraphAsMatrix(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsList(nullFile);
+		});
+		assertThrowsExactly(IllegalArgumentException.class, () -> {
+			new UndirectedWeightedGraphAsMatrix(nullFile);
 		});
 	}
 

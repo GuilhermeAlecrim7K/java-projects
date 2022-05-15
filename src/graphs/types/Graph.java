@@ -4,21 +4,19 @@ import java.util.Iterator;
 
 public interface Graph {
 
-	Integer getDegree(Integer vertex);
-
-	Integer maxDegree();
-
-	Double averageDegree();
-
-	void addEdge(Integer v, Integer w);
-
-	Iterator<Integer> getAdjacentVerticesTo(Integer v);
-
-	String toString();
-
 	public Integer getNumberOfVertices();
 
 	public Integer getNumberOfEdges();
-	
+
+	Integer getDegreeOfVertex(Integer vertex);
+
+	Integer getHighestDegree();
+
+	Double getAverageDegree();
+
+	Iterator<Integer> getAdjacentVerticesTo(Integer v);
+
 	public boolean hasEdgeIncidentOn(Integer v, Integer w);
+
+	String toString();
 }
