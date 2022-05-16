@@ -21,7 +21,6 @@ import types.UnweightedGraph;
 class BreadthFirstSearchTests {
 
 	static File graphConstructor;
-	static UnweightedGraph graph;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,17 +30,16 @@ class BreadthFirstSearchTests {
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		graphConstructor = null;
-		graph = null;
 	}
 
 	private void bfsUndirectedStartingFromVerticesZeroOneTwoThreeFourFiveSix(UnweightedGraph g, int startingPoint) {
 		BreadthFirstSearch searcher = new BreadthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 7; i++)
 			if (i != startingPoint)
-				assertTrue(searcher.hasPathTo(i));
+				assertTrue(searcher.sourceHasPathTo(i));
 
 		for (int i = 7; i < 13; i++)
-			assertFalse(searcher.hasPathTo(i));
+			assertFalse(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -59,13 +57,13 @@ class BreadthFirstSearchTests {
 		BreadthFirstSearch searcher = new BreadthFirstSearch(g, startingPoint);
 		for (int i = 7; i < 9; i++) {
 			if (i != startingPoint)
-				assertTrue(searcher.hasPathTo(i));
+				assertTrue(searcher.sourceHasPathTo(i));
 
 		}
 
 		Integer[] unreachableVertices = { 0, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12 };
 		for (Integer v : unreachableVertices)
-			assertFalse(searcher.hasPathTo(v));
+			assertFalse(searcher.sourceHasPathTo(v));
 	}
 
 	@Test
@@ -79,11 +77,11 @@ class BreadthFirstSearchTests {
 	private void bfsUndirectedStartingFromVerticesNineTenElevenTwelve(UnweightedGraph g, int startingPoint) {
 		BreadthFirstSearch searcher = new BreadthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 9; i++)
-			assertFalse(searcher.hasPathTo(i));
+			assertFalse(searcher.sourceHasPathTo(i));
 
 		for (int i = 9; i < 13; i++)
 			if (i != startingPoint)
-				assertTrue(searcher.hasPathTo(i));
+				assertTrue(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -100,7 +98,7 @@ class BreadthFirstSearchTests {
 		BreadthFirstSearch searcher = new BreadthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 13; i++)
 			if (i != startingPoint)
-				assertFalse(searcher.hasPathTo(i));
+				assertFalse(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -119,10 +117,10 @@ class BreadthFirstSearchTests {
 
 		for (int v : reachable)
 			if (v != startingPoint)
-				assertTrue(searcher.hasPathTo(v));
+				assertTrue(searcher.sourceHasPathTo(v));
 
 		for (int v : unreachable)
-			assertFalse(searcher.hasPathTo(v));
+			assertFalse(searcher.sourceHasPathTo(v));
 	}
 
 	@Test

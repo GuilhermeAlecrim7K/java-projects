@@ -51,7 +51,7 @@ public class BreadthFirstSearch {
 
 	public Iterator<Integer> getPathTo(Integer vertex) {
 		List<Integer> result = new LinkedList<>();
-		if (hasPathTo(vertex)) {
+		if (sourceHasPathTo(vertex)) {
 			for (int i = vertex; i != SOURCE; i = pathTo[i]) {
 				result.add(0, i);
 			}
@@ -59,7 +59,7 @@ public class BreadthFirstSearch {
 		return result.iterator();
 	}
 
-	public boolean hasPathTo(Integer vertex) {
+	public boolean sourceHasPathTo(Integer vertex) {
 		return visitedVertices[vertex] && pathTo[vertex] != SOURCE;
 	}
 }
