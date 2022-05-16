@@ -31,10 +31,11 @@ class DepthFirstSearchTests {
 	private void dfsUndirectedStartingFromVerticesZeroOneTwoThreeFourFiveSix(UnweightedGraph g, int startingPoint) {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 7; i++)
-			assertTrue(searcher.hasPathTo(i));
+			if (i != startingPoint)
+				assertTrue(searcher.sourceHasPathTo(i));
 
 		for (int i = 7; i < 13; i++)
-			assertFalse(searcher.hasPathTo(i));
+			assertFalse(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -50,12 +51,13 @@ class DepthFirstSearchTests {
 
 	private void dfsUndirectedStartingFromVerticesSevenEight(UnweightedGraph g, Integer startingPoint) {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
-		assertTrue(searcher.hasPathTo(7));
-		assertTrue(searcher.hasPathTo(8));
+		for (int i = 7; i < 9; i++)
+			if (i != startingPoint)
+				assertTrue(searcher.sourceHasPathTo(i));
 
 		Integer[] unreachableVertices = { 0, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12 };
 		for (Integer v : unreachableVertices)
-			assertFalse(searcher.hasPathTo(v));
+			assertFalse(searcher.sourceHasPathTo(v));
 	}
 
 	@Test
@@ -69,10 +71,11 @@ class DepthFirstSearchTests {
 	private void dfsUndirectedStartingFromVerticesNineTenElevenTwelve(UnweightedGraph g, int startingPoint) {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 9; i++)
-			assertFalse(searcher.hasPathTo(i));
+			assertFalse(searcher.sourceHasPathTo(i));
 
 		for (int i = 9; i < 13; i++)
-			assertTrue(searcher.hasPathTo(i));
+			if (i != startingPoint)
+				assertTrue(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -89,7 +92,7 @@ class DepthFirstSearchTests {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
 		for (int i = 0; i < 13; i++)
 			if (i != startingPoint)
-				assertFalse(searcher.hasPathTo(i));
+				assertFalse(searcher.sourceHasPathTo(i));
 	}
 
 	@Test
@@ -107,11 +110,12 @@ class DepthFirstSearchTests {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
 
 		for (int v : reachable) {
-			assertTrue(searcher.hasPathTo(v));
+			if (v != startingPoint)
+				assertTrue(searcher.sourceHasPathTo(v));
 		}
 
 		for (int v : unreachable) {
-			assertFalse(searcher.hasPathTo(v));
+			assertFalse(searcher.sourceHasPathTo(v));
 		}
 	}
 

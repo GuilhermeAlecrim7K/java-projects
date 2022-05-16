@@ -44,7 +44,7 @@ public class DepthFirstSearch {
 		return result.iterator();
 	}
 	
-	public boolean hasPathTo(Integer vertex) {
-		return visitedVertices[vertex];
+	public boolean sourceHasPathTo(Integer vertex) {
+		return visitedVertices[vertex] && pathTo[vertex] != SOURCE;
 	}
 }
