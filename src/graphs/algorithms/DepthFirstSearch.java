@@ -3,7 +3,6 @@ package algorithms;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 import types.UnweightedGraph;
 
@@ -36,16 +35,16 @@ public class DepthFirstSearch {
 		}
 	}
 
-	public List<Integer> getPathTo(Integer vertex) {
+	public Iterator<Integer> getPathTo(Integer vertex) {
 		LinkedList<Integer> result = new LinkedList<Integer>();
 		if (pathTo[vertex] != NO_PATH_FOUND) {
-			for (int i = vertex; i != NO_PATH_FOUND; i = pathTo[i])
+			for (int i = vertex; i != SOURCE; i = pathTo[i])
 				result.add(0, i);
 		}
-		return result;
+		return result.iterator();
 	}
 	
-	public boolean isReachable(Integer vertex) {
+	public boolean hasPathTo(Integer vertex) {
 		return visitedVertices[vertex];
 	}
 }
