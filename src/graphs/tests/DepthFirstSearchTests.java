@@ -74,12 +74,14 @@ class DepthFirstSearchTests {
 		for (int i = 9; i < 13; i++)
 			assertTrue(searcher.hasPathTo(i));
 	}
-	
+
 	@Test
 	void dfsUndirectedStartingFromThirdConnectedComponentTests() throws IOException {
-		for (int i = 9; i <13; i++) {
-			dfsUndirectedStartingFromVerticesNineTenElevenTwelve(new UndirectedUnweightedGraphAsList(graphConstructor), i);
-			dfsUndirectedStartingFromVerticesNineTenElevenTwelve(new UndirectedUnweightedGraphAsMatrix(graphConstructor), i);
+		for (int i = 9; i < 13; i++) {
+			dfsUndirectedStartingFromVerticesNineTenElevenTwelve(new UndirectedUnweightedGraphAsList(graphConstructor),
+					i);
+			dfsUndirectedStartingFromVerticesNineTenElevenTwelve(
+					new UndirectedUnweightedGraphAsMatrix(graphConstructor), i);
 		}
 	}
 
@@ -94,85 +96,87 @@ class DepthFirstSearchTests {
 	void dfsDirectedStartingWithVerticesWithZeroOutDegreeTests() throws IOException {
 		Integer[] vertices = { 1, 2, 3, 8, 10, 12 };
 		for (Integer v : vertices) {
-			dfsDirectedStartingFromVerticesOneTwoThreeEightTenTwelve(new DirectedUnweightedGraphAsList(graphConstructor), v);
-			dfsDirectedStartingFromVerticesOneTwoThreeEightTenTwelve(new DirectedUnweightedGraphAsMatrix(graphConstructor), v);
+			dfsDirectedStartingFromVerticesOneTwoThreeEightTenTwelve(
+					new DirectedUnweightedGraphAsList(graphConstructor), v);
+			dfsDirectedStartingFromVerticesOneTwoThreeEightTenTwelve(
+					new DirectedUnweightedGraphAsMatrix(graphConstructor), v);
 		}
 	}
-	
+
 	private void dfsDirectedTests(UnweightedGraph g, int startingPoint, int[] reachable, int[] unreachable) {
 		DepthFirstSearch searcher = new DepthFirstSearch(g, startingPoint);
-		
+
 		for (int v : reachable) {
 			assertTrue(searcher.hasPathTo(v));
 		}
-		
+
 		for (int v : unreachable) {
 			assertFalse(searcher.hasPathTo(v));
 		}
 	}
-	
+
 	@Test
 	void dfsDirectedStartingFromVertexZero() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {0,1,2,3,4,5,6};
-		int[] unreachable = {7,8,9,10,11,12};
+
+		int[] reachable = { 0, 1, 2, 3, 4, 5, 6 };
+		int[] unreachable = { 7, 8, 9, 10, 11, 12 };
 		dfsDirectedTests(gl, 0, reachable, unreachable);
 		dfsDirectedTests(gm, 0, reachable, unreachable);
 	}
 
 	@Test
 	void dfsDirectedStartingFromVertexFive() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {3,4,5};
-		int[] unreachable = {0,1,2,6,7,8,9,10,11,12};
+
+		int[] reachable = { 3, 4, 5 };
+		int[] unreachable = { 0, 1, 2, 6, 7, 8, 9, 10, 11, 12 };
 		dfsDirectedTests(gl, 5, reachable, unreachable);
 		dfsDirectedTests(gm, 5, reachable, unreachable);
 	}
-	
+
 	@Test
 	void dfsDirectedStartingFromVertexSix() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {3,4, 6};
-		int[] unreachable = {0,1,2,5, 7,8,9,10,11,12};
+
+		int[] reachable = { 3, 4, 6 };
+		int[] unreachable = { 0, 1, 2, 5, 7, 8, 9, 10, 11, 12 };
 		dfsDirectedTests(gl, 6, reachable, unreachable);
 		dfsDirectedTests(gm, 6, reachable, unreachable);
 	}
-	
+
 	@Test
 	void dfsDirectedStartingFromVertexSeven() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {7,8};
-		int[] unreachable = {0,1,2, 3, 4, 5,6,9,10,11,12};
+
+		int[] reachable = { 7, 8 };
+		int[] unreachable = { 0, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12 };
 		dfsDirectedTests(gl, 7, reachable, unreachable);
 		dfsDirectedTests(gm, 7, reachable, unreachable);
 	}
-	
+
 	@Test
 	void dfsDirectedStartingFromVertexNine() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {9,10,11,12};
-		int[] unreachable = {0,1,2,3,4,5,6,7,8};
+
+		int[] reachable = { 9, 10, 11, 12 };
+		int[] unreachable = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 		dfsDirectedTests(gl, 9, reachable, unreachable);
 		dfsDirectedTests(gm, 9, reachable, unreachable);
 	}
-	
+
 	@Test
 	void dfsDirectedStartingFromVertexEleven() throws IOException {
-		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor); 
+		UnweightedGraph gl = new DirectedUnweightedGraphAsList(graphConstructor);
 		UnweightedGraph gm = new DirectedUnweightedGraphAsMatrix(graphConstructor);
-		
-		int[] reachable = {11,12};
-		int[] unreachable = {0,1,2,3,4,5,6,7,8,9,10};
+
+		int[] reachable = { 11, 12 };
+		int[] unreachable = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		dfsDirectedTests(gl, 11, reachable, unreachable);
 		dfsDirectedTests(gm, 11, reachable, unreachable);
 	}
