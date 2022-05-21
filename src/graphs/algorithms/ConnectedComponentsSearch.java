@@ -1,10 +1,9 @@
 package algorithms;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 import types.Graph;
+import types.UndirectedGraph;
 
 public class ConnectedComponentsSearch {
 
@@ -13,7 +12,7 @@ public class ConnectedComponentsSearch {
 	private int[] componentId;
 	private int connectedComponentsCount;
 
-	public ConnectedComponentsSearch(Graph graph) {
+	public ConnectedComponentsSearch(UndirectedGraph graph) {
 		this.graph = graph;
 		visitedVertices = new boolean[graph.getNumberOfVertices()];
 		componentId = new int[graph.getNumberOfVertices()];
@@ -21,25 +20,12 @@ public class ConnectedComponentsSearch {
 	}
 
 	private void mapConnectedComponents() {
-		int[] verticesSortedByInDegree = getVerticesIndexSortedByInDegree();
-		for (int v : verticesSortedByInDegree) {
+		for (int v = 0; v < graph.getNumberOfVertices(); v++) {
 			if (!visitedVertices[v]) {
 				dfsOnVertex(v);
 				connectedComponentsCount++;
 			}
 		}
-	}
-	
-	private int[] getVerticesIndexSortedByInDegree() {
-		int[] array = new int[graph.getNumberOfVertices()];
-		int vertex = 0;
-		Arrays.fill(array, vertex++);
-		//TODO: How to order in such way?
-//		LinkedList<Integer> vertices = new LinkedList<>();
-//		for (int i = 0; i < graph.getNumberOfVertices(); i++) {
-//			
-//		}
-		return array;
 	}
 
 	private void dfsOnVertex(int v) {
