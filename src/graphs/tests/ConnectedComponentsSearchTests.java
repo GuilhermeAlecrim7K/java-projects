@@ -44,7 +44,7 @@ class ConnectedComponentsSearchTests {
 		});
 	}
 	
-	private void getNumberOfConnectedComponentsTests(UndirectedGraph g, File f, int expected) {
+	private void getNumberOfConnectedComponentsTests(UndirectedGraph g, int expected) {
 		ConnectedComponentsSearch searcher = new ConnectedComponentsSearch(g);
 		assertEquals(expected, searcher.getNumberOfConnectedComponents());
 	}
@@ -56,27 +56,43 @@ class ConnectedComponentsSearchTests {
 		f = new File("src\\graphs\\graphs-txt\\tinyUG.txt");
 		
 		g = new UndirectedUnweightedGraphAsList(f);
-		getNumberOfConnectedComponentsTests(g, f, 3);
+		getNumberOfConnectedComponentsTests(g, 3);
 		
 		g = new UndirectedUnweightedGraphAsMatrix(f);
-		getNumberOfConnectedComponentsTests(g, f, 3);
+		getNumberOfConnectedComponentsTests(g, 3);
 		
 		f = new File("src\\graphs\\graphs-txt\\mediumUG.txt");
 		
 		g = new UndirectedUnweightedGraphAsList(f);
-		getNumberOfConnectedComponentsTests(g, f, 1);
+		getNumberOfConnectedComponentsTests(g, 1);
 		
 		g = new UndirectedUnweightedGraphAsMatrix(f);
-		getNumberOfConnectedComponentsTests(g, f, 1);
+		getNumberOfConnectedComponentsTests(g, 1);
 
 		f = new File("src\\graphs\\graphs-txt\\tinyWG.txt");
 		
 		g = new UndirectedWeightedGraphAsList(f);
-		getNumberOfConnectedComponentsTests(g, f, 3);
+		getNumberOfConnectedComponentsTests(g, 3);
 		
 		g = new UndirectedWeightedGraphAsMatrix(f);
-		getNumberOfConnectedComponentsTests(g, f, 3);
+		getNumberOfConnectedComponentsTests(g, 3);
+		
+	}
 	
+	@Test
+	void getNumberOfComponentsWithManuallyCreateGraphTests() {
+		
+		UndirectedUnweightedGraphAsList g = new UndirectedUnweightedGraphAsList(7);
+		getNumberOfConnectedComponentsTests(g, 7);
+		
+		g.addEdgeBetween(0, 2);
+		getNumberOfConnectedComponentsTests(g, 6);
+		
+		g.addEdgeBetween(1, 3);
+		getNumberOfConnectedComponentsTests(g, 5);
+		
+		g.addEdgeBetween(1, 0);
+		getNumberOfConnectedComponentsTests(g, 4);
 	}
 
 }

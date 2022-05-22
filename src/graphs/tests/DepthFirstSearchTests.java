@@ -184,5 +184,17 @@ class DepthFirstSearchTests {
 		dfsDirectedTests(gl, 11, reachable, unreachable);
 		dfsDirectedTests(gm, 11, reachable, unreachable);
 	}
-	
+
+	@Test
+	void dfsOnMediumConnectedGraph() throws Exception {
+		
+		File f = new File("src\\graphs\\graphs-txt\\mediumUG.txt");
+		UnweightedGraph g = new UndirectedUnweightedGraphAsList(f);
+		DepthFirstSearch searcher = new DepthFirstSearch(g, 0);
+		
+		for (int i = 1; i < g.getNumberOfVertices(); i++) {
+			assertTrue(searcher.sourceHasPathTo(i));
+		}
+	}
+
 }
